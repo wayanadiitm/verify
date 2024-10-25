@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google" content="notranslate" />
+<meta content="webad" name="author">
+<meta name="msapplication-tap-highlight" content="no">
+<meta content="Welcome to the cert verification feature for Wayanad House" name="description">
+<link href="https://wayanadiitm.github.io/contribute/assets/img/uhclogo.png" rel="icon">
     <title>Wayanad House 2023-24 Records</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -54,5 +59,38 @@
             }
         }
     </script>
+    <script>
+document.getElementById('nav-toggle').onclick = function(){
+  document.getElementById("nav-content").classList.toggle("hidden");
+}
+</script>
+<script language=JavaScript>
+var message="Function Disabled!";
+
+function clickIE4(){
+if (event.button==2){
+return false;
+ }
+}
+
+function clickNS4(e){
+if (document.layers||document.getElementById&&!document.all){
+if (e.which==2||e.which==3){
+return false;
+}
+}
+}
+
+if (document.layers){
+document.captureEvents(Event.MOUSEDOWN);
+document.onmousedown=clickNS4;
+}
+else if (document.all&&!document.getElementById){
+document.onmousedown=clickIE4;
+}
+
+document.oncontextmenu=new Function("return false")
+
+</script>
 </body>
 </html>
