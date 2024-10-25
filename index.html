@@ -22,12 +22,69 @@
             font-weight: bold;
         }
     </style>
+    <style>
+.preloader {
+    position: fixed; /* Cover the entire screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Optional: Light background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's on top of other elements */
+}
+
+.loader {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.loader img {
+    width: 150px; /* Adjust size as needed */
+    animation: fade 10s infinite;
+}
+
+.loading-text {
+    margin-top: 10px; /* Space between logo and text */
+    font-size: 20px; /* Adjust font size as needed */
+    opacity: 0; /* Start invisible */
+    animation: textFade 2s infinite;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.1; /* Faint */
+    }
+}
+
+@keyframes textFade {
+    0%, 100% {
+        opacity: 0; /* Invisible */
+    }
+    25%, 75% {
+        opacity: 1; /* Fully visible */
+    }
+}
+</style>
 </head>
 <body>
+    <div class="preloader">
+    <div class="loader">
+        <img src="logo.PNG" alt="Logo" />
+        <p class="loading-text">Loading...</p>
+    </div>
+</div>
     <div class="container">
         <h1 class="text-center">Wayanad House Certificate Verification</h1>
         <div class="form-group">
-            <input type="text" id="certId" class="form-control" placeholder="Enter Certificate ID" required>
+            <input type="text" id="certId" class="form-control" placeholder="Enter Certificate ID" autocomplete="off" required>
         </div>
         <button class="btn btn-primary btn-block" onclick="verifyCertificate()">Verify</button>
         <p id="result" class="result text-center"></p>
@@ -64,6 +121,11 @@ document.getElementById('nav-toggle').onclick = function(){
   document.getElementById("nav-content").classList.toggle("hidden");
 }
 </script>
+    <script>
+  setTimeout(() => {
+    document.querySelector('.preloader').style.display = 'none';
+}, 10000);
+  </script>
 <script language=JavaScript>
 var message="Function Disabled!";
 
