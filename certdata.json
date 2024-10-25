@@ -1,10 +1,12 @@
 [
     {
         "certid": "WAY11",
-        "name": "John Doe"
+        "name": "John Doe",
+        "event": "MLC"
     },
     {
         "certid": "WAY12",
-        "name": "Jane Smith"
+        "name": "Jane Smith",
+        "event": "MLC"
     }
 ]
