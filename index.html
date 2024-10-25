@@ -8,8 +8,9 @@
 <meta name="msapplication-tap-highlight" content="no">
 <meta content="Welcome to the cert verification feature for Wayanad House" name="description">
 <link href="https://wayanadiitm.github.io/contribute/assets/img/uhclogo.png" rel="icon">
-    <title>Wayanad House 2023-25</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Wayanad House 2023-25</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -22,36 +23,36 @@
             font-weight: bold;
         }
     </style>
-    <style>
+<style>
 .preloader {
-    position: fixed; /* Cover the entire screen */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9); /* Optional: Light background */
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensure it's on top of other elements */
+    z-index: 9999;
 }
 
 .loader {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .loader img {
-    width: 150px; /* Adjust size as needed */
+    width: 150px;
     animation: fade 10s infinite;
 }
 
 .loading-text {
-    margin-top: 10px; /* Space between logo and text */
-    font-size: 20px; /* Adjust font size as needed */
-    opacity: 0; /* Start invisible */
+    margin-top: 10px;
+    font-size: 20px;
+    opacity: 0;
     animation: textFade 2s infinite;
 }
 
@@ -66,10 +67,10 @@
 
 @keyframes textFade {
     0%, 100% {
-        opacity: 0; /* Invisible */
+        opacity: 0;
     }
     25%, 75% {
-        opacity: 1; /* Fully visible */
+        opacity: 1;
     }
 }
 </style>
@@ -87,10 +88,9 @@
             <input type="text" id="certId" class="form-control" placeholder="Enter Certificate ID" autocomplete="off" required>
         </div>
         <button class="btn btn-primary btn-block" onclick="verifyCertificate()">Verify</button>
-        <p id="result" class="result text-center"></p>
     </div>
 
-    <script>
+        <script>
         let certificates = [];
         fetch('certdata.json')
             .then(response => response.json())
@@ -103,20 +103,20 @@
             const certId = document.getElementById('certId').value;
             const record = certificates.find(cert => cert.certid === certId);
 
-            const resultElement = document.getElementById('result');
             if (record) {
-                resultElement.innerText = 
-                    `Verified, issued by Wayanad House to Participant Name ${record.name}`;
-                resultElement.classList.remove('text-danger');
-                resultElement.classList.add('text-success');
+                swal("Verified!", 
+                    `Issued by Wayanad House to Participant ${record.name}`, 
+                    "success"
+                );
             } else {
-                resultElement.innerText = 'No match found';
-                resultElement.classList.remove('text-success');
-                resultElement.classList.add('text-danger');
+                swal("No match found", 
+                    "The Wayanad certificate ID you entered does not exist.", 
+                    "error"
+                );
             }
         }
     </script>
-    <script>
+<script>
 document.getElementById('nav-toggle').onclick = function(){
   document.getElementById("nav-content").classList.toggle("hidden");
 }
