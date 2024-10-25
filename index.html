@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayanad House 2023-24 Records</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Wayanad House Certificate Verification</h1>
+        <div class="form-group">
+            <input type="text" id="certId" class="form-control" placeholder="Enter Certificate ID" required>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="verifyCertificate()">Verify</button>
+        <p id="result" class="result text-center"></p>
+    </div>
+
+    <script>
+        let certificates = [];
+        fetch('certdata.json')
+            .then(response => response.json())
+            .then(data => {
+                certificates = data;
+            })
+            .catch(error => console.error('Error loading:', error));
+
+        function verifyCertificate() {
+            const certId = document.getElementById('certId').value;
+            const record = certificates.find(cert => cert.certid === certId);
+
+            const resultElement = document.getElementById('result');
+            if (record) {
+                resultElement.innerText = 
+                    `Verified, issued by Wayanad House to Participant Name ${record.name}`;
+                resultElement.classList.remove('text-danger');
+                resultElement.classList.add('text-success');
+            } else {
+                resultElement.innerText = 'No match found';
+                resultElement.classList.remove('text-success');
+                resultElement.classList.add('text-danger');
+            }
+        }
+    </script>
+</body>
+</html>
